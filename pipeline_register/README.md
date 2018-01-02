@@ -24,3 +24,16 @@ T Reg(T val) {
     return Reg<T,num_stages-1>(val);
 }
 ```
+
+## Reference from include/hls/utils/x_hls_utils.h
+```
+template<class T>
+T reg(T in)
+{
+    //#ifndef NO_FORCING
+#pragma HLS INLINE self off
+#pragma HLS INTERFACE ap_none port=return register
+    //#endif
+    return in;
+}
+```
